@@ -12,9 +12,13 @@ public class ResultCount {
         return ball;
     }
 
-    public ResultCount(int strike, int ball) {
+    private ResultCount(int strike, int ball) {
         this.strike = strike;
         this.ball = ball;
+    }
+
+    public static ResultCount initialize() {
+        return new ResultCount(0, 0);
     }
 
     public void addStrike() {

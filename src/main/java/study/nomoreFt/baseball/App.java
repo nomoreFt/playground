@@ -22,16 +22,14 @@ public class App {
         PlayGame playGame = PlayGame.of(answer, umpire);
 
 
-        boolean isThreeStrike = false;
-        while(!isThreeStrike) {
+        boolean endStatus = false;
+        while(!endStatus) {
             String guess = inputAdapter.inputGuess();
             ResultCount resultCount = playGame.play(guess);
-            outputAdapter.outputResult(resultCount);
-            resultHandler.handleResult(resultCount, inputAdapter, outputAdapter);
+            endStatus = resultHandler.handleResult(resultCount, inputAdapter, outputAdapter);
 
         }
 
-
-
+        inputAdapter.afterAll();
     }
 }

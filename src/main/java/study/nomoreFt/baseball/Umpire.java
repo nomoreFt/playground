@@ -21,7 +21,7 @@ public class Umpire {
     }
 
     public ResultCount judge(String guess) {
-        ResultCount resultCount = new ResultCount(0, 0);
+        ResultCount resultCount = ResultCount.initialize();
 
         for (CountingStrategy strategy : strategies) {
             strategy.addCountToResult(answer, guess, resultCount);
