@@ -16,6 +16,14 @@ public class RacingAppTest extends MainTest {
         });
     }
 
+    @Test
+    void 라운드_입력() {
+        assertSimpleTest(() -> {
+            run("pobi,crong,honux", "5");
+            Assertions.assertTrue(output().contains("시도할 회수는 몇회인가요?"));
+        });
+    }
+
 
 
     @Override

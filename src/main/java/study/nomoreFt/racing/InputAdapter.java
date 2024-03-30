@@ -7,4 +7,6 @@ import java.util.List;
 public interface InputAdapter {
 
     public String inputCar();
+
+    public int inputRound();
 }

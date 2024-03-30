@@ -6,7 +6,7 @@ import study.nomoreFt.racing.car.Car;
 
 import java.util.List;
 
-public class StringParserTest {
+public class CarNameParserTest {
 
     @Test
     void 콤마기준으로_문자열_나눠_자동차객체로_생성() {
