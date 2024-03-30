@@ -9,15 +9,19 @@ public class App {
     public static void main(String[] args) {
         InputAdapter inputAdapter = new ConsoleInputAdapter();
         OutputAdapter outputAdapter = new ConsoleOutputAdapter();
-        ResultHandler resultHandler = new ResultHandler();
+
 
         NumberGenerator numberGenerator = new NumberGenerator();
-        String answer = numberGenerator.generateThreeNumber();
+        String answer = numberGenerator.generateNumber(3);
 
 
         CountingStrategy ballCountingStrategy = new BallCountingStrategy();
         CountingStrategy strikeCountingStrategy = new StrikeCountingStrategy();
-        Umpire umpire = Umpire.of(answer, ballCountingStrategy,strikeCountingStrategy);
+        Umpire umpire = Umpire.of(answer, ballCountingStrategy, strikeCountingStrategy);
+
+        ResultHandler resultHandler = new ResultHandler();
+
+
 
         PlayGame playGame = PlayGame.of(answer, umpire);
 
@@ -25,8 +29,8 @@ public class App {
         boolean endStatus = false;
         while(!endStatus) {
             String guess = inputAdapter.inputGuess();
-            ResultCount resultCount = playGame.play(guess);
-            endStatus = resultHandler.handleResult(resultCount, inputAdapter, outputAdapter);
+            ScoreBoard scoreBoard = playGame.play(guess);
+            endStatus = resultHandler.handleResult(scoreBoard, inputAdapter, outputAdapter);
 
         }
 
