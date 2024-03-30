@@ -36,4 +36,16 @@ public class Car {
     public void forward(int distance) {
         this.position.forward(distance);
     }
+
+    public void setMoveStrategy(MoveStrategy moveStrategy) {
+        this.moveStrategy = moveStrategy;
+    }
+
+    public String printPosition() {
+        return this.name.getName() + " : " + "-".repeat(this.position.getPosition());
+    }
+
+    public boolean isWinner(int maxPosition) {
+        return this.position.getPosition() == maxPosition;
+    }
 }

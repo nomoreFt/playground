@@ -1,28 +1,27 @@
 package study.nomoreFt.racing;
 
 import study.nomoreFt.racing.car.Car;
+import study.nomoreFt.racing.car.Cars;
 
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 public class RacingGame {
-    private final Set<Car> cars = new LinkedHashSet<>();
+    private final Cars cars;
     private int round;
 
-    public RacingGame(List<Car> cars) {
-        this.cars.addAll(cars);
+    public RacingGame(Cars cars) {
+        this.cars = cars;
         this.round = 0;
     }
 
-    public static RacingGame of(List<Car> cars) {
+    public static RacingGame of(Cars cars) {
         return new RacingGame(cars);
     }
 
     public void playRound() {
         this.round++;
-        for (Car car : cars) {
-            car.move();
-        }
+        cars.move();
     }
 }
