@@ -5,22 +5,24 @@ package study.nomoreFt.racing.car;
 public class Car {
     private final CarName name;
     private final Position position;
+    private MoveStrategy moveStrategy;
 
-    public Car(String name) {
+    public Car(String name, MoveStrategy moveStrategy) {
         this.name = CarName.of(name);
         this.position = Position.create();
+        this.moveStrategy = moveStrategy;
+    }
+
+    public static Car of(String name, MoveStrategy moveStrategy) {
+        return new Car(name, moveStrategy);
     }
 
     public static Car of(String name) {
-        return new Car(name);
+        return new Car(name, null);
     }
 
-    public boolean move(int random) {
-        if (random >= 4) {
-            this.position.add();
-            return true;
-        }
-        return false;
+    public void move() {
+        moveStrategy.move(this);
     }
 
     public int getPosition() {
@@ -29,5 +31,9 @@ public class Car {
 
     public String getName() {
         return this.name.getName();
+    }
+
+    public void forward(int distance) {
+        this.position.forward(distance);
     }
 }

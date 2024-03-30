@@ -1,16 +1,27 @@
 package study.nomoreFt.racing;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import study.nomoreFt.racing.car.Car;
+import study.nomoreFt.racing.car.ForwardOnFourMoveStrategy;
+import study.nomoreFt.racing.car.MoveStrategy;
 
+import java.util.Random;
 import java.util.stream.Stream;
 
 public class CarTest {
+
+    private MoveStrategy moveStrategy;
+
+    @BeforeEach
+    void setUp() {
+        moveStrategy = new ForwardOnFourMoveStrategy(() -> new Random().nextInt(10));
+    }
 
     @DisplayName("자동차는 생성될 때 이름이 5자가 넘으면 안된다.")
     @Test
@@ -19,36 +30,32 @@ public class CarTest {
         String name = "abcdef";
         // when
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Car.of(name);
+            Car.of(name, moveStrategy);
         });
         // then
     }
 
-    @DisplayName("자동차는 random값이 4이상일경우 전진하고 true를 반환한다.")
-    @ParameterizedTest(name = "random값이 {0}일때 전진하고 {2}를 반환한다.")
+    @ParameterizedTest(name = "random값이 {1}일때 {2}로 전진한다.")
     @MethodSource("moveSuccessTest")
-    void moveSuccessTest(int random, int expect, boolean moveCheck) {
+    void moveSuccessTest(MoveStrategy random,int temp, int expect) {
         // given
-        Car car = Car.of("car");
+        Car car = Car.of("car", random);
         // when
-        boolean result = car.move(random);
+        car.move();
         // then
         Assertions.assertEquals(expect, car.getPosition());
-        Assertions.assertEquals(result, moveCheck);
     }
 
     private static Stream<Arguments> moveSuccessTest() {
         return Stream.of(
-                Arguments.of(0, 0, false),
-                Arguments.of(1, 0, false),
-                Arguments.of(2, 0, false),
-                Arguments.of(3, 0, false),
-                Arguments.of(4, 1, true),
-                Arguments.of(5, 1, true),
-                Arguments.of(6, 1, true),
-                Arguments.of(7, 1, true),
-                Arguments.of(8, 1, true),
-                Arguments.of(9, 1, true)
+                Arguments.of(new ForwardOnFourMoveStrategy(() -> 0),0, 0),
+                Arguments.of(new ForwardOnFourMoveStrategy(() -> 3),3, 0),
+                Arguments.of(new ForwardOnFourMoveStrategy(() -> 4),4, 1),
+                Arguments.of(new ForwardOnFourMoveStrategy(() -> 5),5, 1),
+                Arguments.of(new ForwardOnFourMoveStrategy(() -> 6),6, 1),
+                Arguments.of(new ForwardOnFourMoveStrategy(() -> 7),7, 1),
+                Arguments.of(new ForwardOnFourMoveStrategy(() -> 8),8, 1),
+                Arguments.of(new ForwardOnFourMoveStrategy(() -> 9),9, 1)
         );
     }
 
