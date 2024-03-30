@@ -3,21 +3,16 @@ package study.nomoreFt.racing;
 
 
 public class Car {
-    private final String name;
-    private Position position;
+    private final CarName name;
+    private final Position position;
 
     public Car(String name) {
-        this.name = name;
+        this.name = CarName.of(name);
         this.position = Position.create();
     }
 
     public static Car of(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
-        }
-
         return new Car(name);
-
     }
 
     public boolean move(int random) {
