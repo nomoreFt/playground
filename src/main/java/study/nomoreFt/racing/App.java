@@ -11,7 +11,8 @@ public class App {
 
         InputAdapter inputAdapter = ConsoleInputAdapter.create();
         CarNameParser carNameParser = CarNameParser.create();
-        List<Car> cars = carNameParser.parse(inputAdapter.inputCar());
 
+        List<Car> cars = carNameParser.parse(inputAdapter.inputCar());
+        int round = inputAdapter.inputRound();
     }
 }
