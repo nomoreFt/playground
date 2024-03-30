@@ -15,4 +15,8 @@ public class CarName {
 
         return new CarName(name);
     }
+
+    public String getName() {
+        return this.name;
+    }
 }
