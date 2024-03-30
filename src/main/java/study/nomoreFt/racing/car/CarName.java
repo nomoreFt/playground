@@ -1,4 +1,4 @@
-package study.nomoreFt.racing;
+package study.nomoreFt.racing.car;
 
 public class CarName {
     private String name;
