@@ -10,7 +10,7 @@ class NumberGeneratorTest {
     @RepeatedTest(value = 100, name = RepeatedTest.LONG_DISPLAY_NAME)
     public void testGenerateThreeNumber() {
         NumberGenerator generator = new NumberGenerator();
-        String result = generator.generateThreeNumber();
+        String result = generator.generateNumber(3);
 
         // 결과가 정확히 3자리인지 확인
         Assertions.assertEquals(3, result.length());

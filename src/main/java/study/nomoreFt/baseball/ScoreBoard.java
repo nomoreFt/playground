@@ -1,6 +1,6 @@
 package study.nomoreFt.baseball;
 
-public class ResultCount {
+public class ScoreBoard {
     private int strike;
     private int ball;
 
@@ -12,13 +12,13 @@ public class ResultCount {
         return ball;
     }
 
-    private ResultCount(int strike, int ball) {
+    private ScoreBoard(int strike, int ball) {
         this.strike = strike;
         this.ball = ball;
     }
 
-    public static ResultCount initialize() {
-        return new ResultCount(0, 0);
+    public static ScoreBoard initialize() {
+        return new ScoreBoard(0, 0);
     }
 
     public void addStrike() {
