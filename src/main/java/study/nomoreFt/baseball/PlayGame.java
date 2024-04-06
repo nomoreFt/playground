@@ -13,8 +13,8 @@ public class PlayGame {
         return new PlayGame(answer, umpire);
     }
 
-    public ResultCount play(String guess) {
-        return umpire.judge(guess);
+    public ScoreBoard play(String guess) {
+        return umpire.judge(answer, guess);
     }
 
 

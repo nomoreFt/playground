@@ -1,24 +1,24 @@
 package study.nomoreFt.baseball.io;
 
 import study.nomoreFt.baseball.OutputAdapter;
-import study.nomoreFt.baseball.ResultCount;
+import study.nomoreFt.baseball.ScoreBoard;
 
 public class ConsoleOutputAdapter implements OutputAdapter {
     @Override
-    public void outputResult(ResultCount resultCount) {
+    public void outputResult(ScoreBoard scoreBoard) {
         StringBuilder sb = new StringBuilder();
 
         // 볼 개수가 0개가 아니면 볼 개수를 문자열로 변환하여 sb에 추가
-        if(resultCount.hasBall()) {
-            sb.append(resultCount.getBallCount()).append("볼 ");
+        if(scoreBoard.hasBall()) {
+            sb.append(scoreBoard.getBallCount()).append("볼 ");
         }
         // 스트라이크 개수가 0개가 아니면 스트라이크 개수를 문자열로 변환하여 sb에 추가
-        if(resultCount.hasStrike()) {
-            sb.append(resultCount.getStrikeCount()).append("스트라이크 ");
+        if(scoreBoard.hasStrike()) {
+            sb.append(scoreBoard.getStrikeCount()).append("스트라이크 ");
         }
 
         // 스트라이크와 볼 개수가 모두 0개이면 "낫싱"을 sb에 추가
-        if(resultCount.isNothing()) {
+        if(scoreBoard.isNothing()) {
             sb.append("낫싱");
         }
 
