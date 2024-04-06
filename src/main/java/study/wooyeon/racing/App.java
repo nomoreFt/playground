@@ -5,15 +5,20 @@ import study.wooyeon.racing.io.OutputViewAdapter;
 import study.wooyeon.racing.io.impl.ConsoleInputView;
 import study.wooyeon.racing.io.impl.ConsoleOutputView;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class App {
     public static void main(String[] args) {
-        InputViewAdapter input = new ConsoleInputView();
-        OutputViewAdapter output = new ConsoleOutputView();
+        InputViewAdapter input = ConsoleInputView.getInstance();
+        OutputViewAdapter output = ConsoleOutputView.getInstance();
 
-        List<Car> cars = input.inputCars();
+        String carNameInput = input.inputCars();
+        Parser parser = Parser.getInstance();
+        List<Car> cars = parser.getListCar(carNameInput);
+
         int tryCount = input.inputTryCount();
 
         Racing racing = new Racing(cars);
