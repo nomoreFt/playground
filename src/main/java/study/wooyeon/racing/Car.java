@@ -1,17 +1,17 @@
 package study.wooyeon.racing;
 
 import lombok.Getter;
+import study.wooyeon.racing.message.Exception;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
-public class Car {
+public class Car implements Validator<Integer>{
     private final String name;
     private int position;
-    private static final int MOVE_THRESHOLD = 4;
 
     public Car(String name) {
-        Validator.checkLength(name.length());
+        validation(name.length());
         this.name = name;
         this.position = 0;
     }
@@ -23,10 +23,17 @@ public class Car {
     }
 
     public boolean isMovable() {
-        return ThreadLocalRandom.current().nextInt(10) >= MOVE_THRESHOLD;
+        return ThreadLocalRandom.current().nextInt(Option.랜덤범위.getOption()) >= Option.차량이동.getOption();
     }
 
     public void move() {
         position++;
+    }
+
+    @Override
+    public void validation(Integer carNameLength) {
+        if (carNameLength > Option.길이제한.getOption()) {
+            throw new IllegalArgumentException(Exception.길이제한.getMessage());
+        }
     }
 }

@@ -12,32 +12,25 @@ import java.util.stream.Collectors;
 
 public class ConsoleInputView implements InputViewAdapter {
 
-    private final Scanner scanner;
-    private static final String DELIMITER = ",";
+    private static final ConsoleInputView consoleInputView = new ConsoleInputView();
+    private final Scanner scanner = new Scanner(System.in);
 
-    public ConsoleInputView() {
-        this.scanner = new Scanner(System.in);
-    }
-
-    // For testing purposes
-    public ConsoleInputView(ByteArrayInputStream inputStream) {
-        this.scanner = new Scanner(inputStream);
+    private ConsoleInputView() {
     }
 
     @Override
-    public List<Car> inputCars() {
+    public String inputCars() {
         System.out.print(Input.자동차이름_입력.getMessage());
-        String carNamesInput = scanner.nextLine();
-        String[] carNames = carNamesInput.split(DELIMITER);
-
-        return Arrays.stream(carNames)
-                .map(Car::new)
-                .collect(Collectors.toList());
+        return scanner.nextLine();
     }
 
     @Override
     public int inputTryCount() {
         System.out.print(Input.시도횟수_입력.getMessage());
         return Integer.parseInt(scanner.nextLine());
+    }
+
+    public static ConsoleInputView getInstance() {
+        return consoleInputView;
     }
 }

@@ -5,6 +5,6 @@ import study.wooyeon.racing.Car;
 import java.util.List;
 
 public interface InputViewAdapter {
-    List<Car> inputCars();
+    String inputCars();
     int inputTryCount();
 }

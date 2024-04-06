@@ -10,15 +10,10 @@ import java.util.stream.Collectors;
 
 public class ConsoleOutputView implements OutputViewAdapter {
 
-    private final PrintStream printStream;
+    private static final ConsoleOutputView consoleOutputView = new ConsoleOutputView();
 
-    public ConsoleOutputView() {
-        this.printStream = System.out;
-    }
+    private ConsoleOutputView() {
 
-    // For testing purposes
-    public ConsoleOutputView(PrintStream printStream) {
-        this.printStream = printStream;
     }
     @Override
     public void printStatus(List<Car> cars) {
@@ -35,4 +30,7 @@ public class ConsoleOutputView implements OutputViewAdapter {
         System.out.println(Output.최종우승_출력.getMessage().replace("*", winnersNames));
     }
 
+    public static ConsoleOutputView getInstance() {
+        return consoleOutputView;
+    }
 }

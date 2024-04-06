@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 
 class AppTest {
 
-    private final OutputViewAdapter output = new ConsoleOutputView();
+    private final OutputViewAdapter output = ConsoleOutputView.getInstance();
 
     @Test
     @DisplayName("레이싱 게임이 정상적으로 완료된다.")
@@ -25,6 +25,11 @@ class AppTest {
         // when & then
         Racing racing = new Racing(cars);
         racing.race(tryCount);
+
+        for(int i = 0; i < tryCount; ++i) {
+            racing.moveCars();
+            output.printStatus(cars);
+        }
 
         IntStream.range(0, tryCount).forEach(i -> {
             racing.moveCars();
