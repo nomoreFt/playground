@@ -1,5 +1,8 @@
 package study.nomoreFt.calculator;
 
+import java.util.List;
+
 public interface OutputAdapter {
-    void outputResult(Double distance);
+    void outputStart(Shape shape);
+    void outputResult(Calculator calculator);
 }
