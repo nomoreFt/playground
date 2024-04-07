@@ -5,8 +5,9 @@ public class Coordinate implements Comparable<Coordinate>{
     int y;
 
     public Coordinate(int x, int y) {
-        assert x <= 24 && y <= 24;
-
+        if(x > 24 || y > 24) {
+            throw new IllegalArgumentException("좌표는 24이하의 수만 가능합니다.");
+        }
         this.x = x;
         this.y = y;
     }

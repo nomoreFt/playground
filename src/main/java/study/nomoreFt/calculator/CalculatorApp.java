@@ -14,8 +14,17 @@ public class CalculatorApp {
         ConsoleInputAdapter inputAdapter = ConsoleInputAdapter.create();
         OutputAdapter outputAdapter = ConsoleOutputAdapter.create();
 
-        String inputCoordinates = inputAdapter.inputCoordinates();
-        List<Coordinate> coordinates =  CoordinateParser.parse(inputCoordinates);
+        List<Coordinate> coordinates;
+        while (true) {
+            try {
+                String inputCoordinates = inputAdapter.inputCoordinates();
+                coordinates = CoordinateParser.parse(inputCoordinates);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("잘못된 입력입니다. 좌표는 24 이하의 값을 가져야 합니다. 다시 입력해주세요.");
+            }
+        }
+
         Shape shape = ShapeFactory.createShape(coordinates);
         Calculator calculator = ShapeFactory.createCalculator(shape);
 

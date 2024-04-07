@@ -10,7 +10,7 @@ public class CoordinateParser {
     private static final String COORDINATE_PAIR_DELIMITER = ",";
 
     //(10,10)-(14,15)-(20,10)
-    public static List<Coordinate> parse(String inputCoordinates) {
+    public static List<Coordinate> parse(String inputCoordinates) throws IllegalArgumentException{
         List<Coordinate> coordinates = new ArrayList<>();
 
         String[] pairs = inputCoordinates.split(COORDINATE_DELIMITER);
